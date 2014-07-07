@@ -1,0 +1,1 @@
+"use strict";define("/js/business/hw",[],function(a,b,c){c.exports=function(){console.log("say hello12121")}});

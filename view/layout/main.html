@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <%- Loader('/css/base/index.css')
+        .css('/css/base/index.css')
+        .done(assetsMap, config.assets.url, config.assets.combo)
+    %>
+    <%- Loader('/js/base.js')
+        .js('/js/bower_components/jquery/dist/jquery.min.js')
+        .js('/js/bower_components/webuploader/dist/webuploader.min.js')
+        .done(assetsMap, config.assets.url, config.assets.combo)
+    %>
+    <%block head%>
+
+    <%/block%>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="javascript:;">主页</a></li>
+                <li><a href="javascript:;">通知</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="content-sidebar">
+                <ul class="nav nav-list">
+                    <li class="active">
+                        <a href="javascript:;">
+                            <i class="icon-chevron-right"></i>
+                            按钮
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-chevron-right"></i>
+                            表单
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-main">
+                <%block body%>
+
+                <%/block%>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <%block foot%>
+
+    <%/block%>
+</body>
+</html>

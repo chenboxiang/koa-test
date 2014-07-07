@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Styleguide - css</title>
+    <link rel="stylesheet" href="/public/dist/css/base/index.css" />
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="javascript:;">主页</a></li>
+                <li><a href="javascript:;">通知</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="content-sidebar">
+                <ul class="nav nav-list">
+                    <li class="active">
+                        <a href="javascript:;">
+                            <i class="icon-chevron-right"></i>
+                            按钮
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-chevron-right"></i>
+                            表单
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-main">
+                <div class="module bg-white">
+                    <div class="header">
+                        <h2>按钮</h2>
+                        <div class="title-sub">二级title</div>
+                    </div>
+                    <div class="body">
+                        <button class="btn btn-default">default button</button>
+                        <button class="btn btn-primary">primary button</button>
+                        <button class="btn btn-success">success button</button>
+                        <button class="btn btn-warning">warning button</button>
+                        <button class="btn btn-danger">danger button</button>
+                        <button class="btn btn-info">info button</button>
+                        <button class="btn btn-inverse">inverse button</button>
+                    </div>
+                </div>
+
+                <div class="module bg-white">
+                    <div class="header">
+                        <h2>表单</h2>
+                    </div>
+                    <div class="body">
+                        <form class="form-horizontal" action="">
+                            <div class="control-group">
+                                <label class="control-label">用户名</label>
+                                <div class="controls">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">密码</label>
+                                <div class="controls">
+                                    <input type="password" />
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-default">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>

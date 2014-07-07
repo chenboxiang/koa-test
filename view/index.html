@@ -1,0 +1,47 @@
+<%+ ./layout/main.html %>
+<%block body%>
+<div class="module bg-white">
+    <div class="header">
+        <h2>按钮</h2>
+        <div class="title-sub">二级title</div>
+    </div>
+    <div class="body">
+        <button class="btn btn-default">default button</button>
+        <button class="btn btn-primary">primary button</button>
+        <button class="btn btn-success">success button</button>
+        <button class="btn btn-warning">warning button</button>
+        <button class="btn btn-danger">danger button</button>
+        <button class="btn btn-info">info button</button>
+        <button class="btn btn-inverse">inverse button</button>
+    </div>
+</div>
+<div class="module bg-white">
+    <div class="header">
+        <h2>webuploader</h2>
+        <div class="title-sub">二级title</div>
+    </div>
+    <div class="body">
+        <div id="uploader" class="well">
+            <!--用来存放文件信息-->
+            <div id="thelist" class="uploader-list"></div>
+            <div class="btns">
+                <div id="picker" style="display: inline-block;margin-right: 10px;">选择文件</div>
+                <button id="ctlBtn" class="btn btn-default">开始上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%/block%>
+<%block foot%>
+<script>
+    $(function() {
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '<%= config.assets.url %>/js/bower_components/webuploader/dist/Uploader.swf',
+            server: '/file/upload',
+            pick: '#picker',
+            resize: false
+        });
+    });
+</script>
+<%/block%>

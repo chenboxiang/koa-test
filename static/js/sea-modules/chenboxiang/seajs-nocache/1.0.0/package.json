@@ -1,0 +1,31 @@
+{
+    "family": "chenboxiang",
+    "name": "seajs-nocache",
+    "version": "1.0.0",
+    "description": "seajs nocache plugin",
+    "homepage": "https://github.com/chenboxiang/seajs-nocache",
+    "author": {
+        "name": "boxiang chen",
+        "email": "gozap.chenboxiang@gmail.com"
+    },
+    "maintainers": [
+        "chenboxiang"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/chenboxiang/seajs-nocache.git"
+    },
+    "bugs": {
+        "url": "https://github.com/chenboxiang/seajs-nocache/issues"
+    },
+    "keywords": ["seajs", "plugin", "nocache"],
+    "licenses": "MIT",
+    "devDependencies": {
+        "seatools": "*"
+    },
+    "config": {
+        "plugin-concat": [
+            "seajs-nocache.js"
+        ]
+    }
+}

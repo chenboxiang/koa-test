@@ -1,0 +1,131 @@
+//
+// Layouts
+// --------------------------------------------------
+
+// Container (centered, fixed-width layouts)
+.container {
+    .container-fixed();
+    width: 890px;
+}
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+    padding-right: @gridGutterWidth;
+    padding-left: @gridGutterWidth;
+    .clearfix();
+}
+
+#content {
+    padding: 10px 0;
+}
+
+.content-main {
+    float: right;
+    width: 590px;
+}
+
+.content-sidebar {
+    float: left;
+    width: 290px;
+
+    .nav {
+        .border-radius(@borderRadiusLarge);
+        & > li:first-child > a {
+            .border-top-radius(@borderRadiusLarge);
+        }
+
+        & > li:last-child > a {
+            .border-bottom-radius(@borderRadiusLarge);
+        }
+
+        & > li > a {
+            border-bottom: 1px solid #e1e8ed;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
+}
+
+.module {
+    border: 0;
+    .border-radius(@borderRadiusLarge);
+    margin-bottom: 10px;
+
+    > :first-child {
+        .border-top-radius(@borderRadiusLarge);
+    }
+
+    > :last-child {
+        .border-bottom-radius(@borderRadiusLarge);
+    }
+
+    > .header {
+        border-bottom: 1px solid @grayLighter;
+        padding: 12px;
+        min-height: 20px;
+
+        > .title-sub {
+            color: #999;
+            margin-top: 3px;
+        }
+    }
+
+    > .body {
+        padding: 12px 0;
+    }
+}
+
+// header
+// ------------------------
+
+#header {
+    height: @headerHeight;
+    color: #66757f;
+    background: @white;
+
+    .container {
+
+    }
+
+    .nav {
+        float: left;
+        > li {
+            height: @headerHeight;
+            position: relative;
+            overflow: hidden;
+            float: left;
+            color: @navbarLinkColor;
+
+            &:hover,
+            &.active {
+                color: @navbarLinkColorHover;
+                > a {
+                    height: (@headerHeight - 4);
+                    text-decoration: none;
+                }
+            }
+
+            > a {
+                height: @headerHeight;
+                line-height: @headerHeight;
+                text-align: center;
+                padding: 0 14px;
+                color: @navbarLinkColor;
+                border-bottom: 4px solid #0084b4;
+                .transition(height 0.15s ease-in-out);
+                font-weight: 500;
+
+                &:hover,
+                &:focus {
+                    color: @navbarLinkColorHover;
+                    text-decoration: none;
+                    height: (@headerHeight - 4);
+                }
+            }
+        }
+    }
+}
+
+// footer
+// ----------------------------

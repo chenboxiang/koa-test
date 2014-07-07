@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Avalon.js TODO-MVC</title>
+	<link rel="stylesheet"
+		  href="http://todomvc.com/architecture-examples/backbone/bower_components/todomvc-common/base.css">
+	<script src="/js/lib/avalon.min.js"></script>
+	<script type="text/javascript">
+		function completedCount(a) {
+			return a.list.filter(function(el) {
+				return el.completed;
+			}).length;
+		}
+		var todo = avalon.define("todo", function(vm) {
+
+			vm.list = []
+			//添加内容
+			vm.currentEditing = ""
+			vm.add = function(e) {
+				if (e.keyCode === 13 && vm.currentEditing.length > 0) {
+					vm.list.push({
+						content: vm.currentEditing,
+						completed: false,
+						hidden: false
+					});
+					vm.currentEditing = "";
+				}
+			}
+
+
+			vm.completeAll = function() {
+				var bool = this.checked
+				vm.list.forEach(function(el) {
+					el.completed = bool
+				})
+				vm.completedCount = completedCount(vm)
+			}
+			vm.syncCompleteCount = function() {
+				setTimeout(function() {
+					vm.completedCount = completedCount(vm)
+				}, 0)
+			}
+			vm.clearComplete = function() {
+				vm.list.removeAll(function(el) {
+					return el.completed
+				})
+			}
+
+			vm.completedCount = completedCount(vm)
+
+			//编辑内容
+			vm.editingId = NaN
+			vm.editTodo = function(a) {
+				vm.editingId = a.$id
+			}
+			vm.unEditTodo = function() {
+				vm.editingId = ""
+			}
+
+
+			//页脚
+			vm.showItem = ""
+			vm.filters = ["", "active", "completed"]
+			vm.getText = function(a) {
+				if (a) {
+					return a.replace(/^\w/, function(b) {
+						return b.toUpperCase()
+					})
+				} else {
+					return "All"
+				}
+			}
+			vm.toggleShowItem = function(el) {
+				vm.showItem = el
+				vm.list.forEach(function(elem) {
+					switch (el) {
+						case "active":
+							elem.hidden = elem.completed
+							break;
+						case "completed":
+							elem.hidden = !elem.completed
+							break;
+						case "":
+							elem.hidden = false
+							break
+					}
+				})
+
+			}
+		});
+		todo.list.$watch("length", function() {
+			todo.syncCompleteCount()
+		})
+
+		todo.list.push({content: "todo item 1, live", completed: false, hidden: false}, {content: "todo item 2, done", completed: true, hidden: false})
+
+	</script>
+</head>
+<body>
+	<div>
+		<section id="todoapp" ms-controller="todo">
+			<header id="header">
+				<h1>todos</h1>
+				<input id="new-todo" placeholder="What needs to be done?" ms-duplex="currentEditing" ms-keypress="add">
+			</header>
+			<section id="main">
+				<ul id="todo-list" ms-each-item="list">
+					<li ms-data-id="item.$id" ms-class="completed:item.completed" ms-class-1="hidden:item.hidden"
+						ms-class-2='editing: editingId==item.$id'>
+						<div class='view'>
+							<input class="toggle" type="checkbox" ms-duplex-radio="item.completed"
+								   ms-click='syncCompleteCount'>
+							<label ms-on-dblclick='editTodo(item)'>{{item.content}}</label>
+							<button class="destroy" ms-click="$remove"></button>
+						</div>
+						<input class="edit" ms-duplex='item.content' ms-blur='unEditTodo'>
+					</li>
+				</ul>
+				<input id="toggle-all" ms-click="completeAll" ms-checked='list.size()===completedCount' type="checkbox">
+			</section>
+			<footer id="footer">
+				<span id="todo-count"><strong>{{list.size()-completedCount}}</strong> items left</span>
+				<ul id="filters">
+					<li ms-repeat='filters'>
+						<a ms-class="selected:showItem == el" ms-click='toggleShowItem(el)' ms-href="#/{{el}}">{{getText(el)}}</a>
+					</li>
+				</ul>
+				<button id="clear-completed" ms-if="completedCount" ms-click='clearComplete'>
+					Clear completed ({{completedCount}})
+				</button>
+			</footer>
+		</section>
+		<footer id="info">
+			<p>Double-click to edit a todo</p>
+		</footer>
+	</div>
+</body>
+</html>
